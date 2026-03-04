@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Complaint Reports - Cyber Crime System</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI', Arial, sans-serif;
+    background: url("images/bg.png") no-repeat center center fixed;
+    background-size: cover;
+    min-height:100vh;
+}
+
+/* ===== HEADER ===== */
+.top-header{
+    background: url("images/header-bg.png") no-repeat center center;
+    background-size: cover;
+    padding:18px 60px;
+    color:white;
+}
+
+.logo-section{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.logo-section img{
+    height:60px;
+}
+
+.logo-text{
+    font-size:24px;
+    font-weight:600;
+}
+
+.logo-text span{
+    font-weight:300;
+}
+
+/* ===== MAIN CONTAINER ===== */
+.main-container{
+    display:flex;
+    justify-content:center;
+    padding:40px 20px;
+}
+
+/* ===== CARD ===== */
+.card{
+    width:700px;
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(8px);
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 25px 60px rgba(0,0,0,0.2);
+}
+
+.card h2{
+    text-align:center;
+    color:#1E3A8A;
+    font-size:30px;
+    margin-bottom:40px;
+}
+
+/* ===== GRID (NO SCROLL) ===== */
+.report-grid{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:25px 30px;
+}
+
+/* ===== CATEGORY CARD ===== */
+.report-item{
+    background:white;
+    border-radius:15px;
+    padding:20px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+    transition:0.3s;
+}
+
+.report-item:hover{
+    transform:translateY(-3px);
+}
+
+.category-info{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    font-weight:500;
+}
+
+.category-info img{
+    width:40px;
+    height:40px;
+    object-fit:contain;
+}
+
+.count-badge{
+    background:#3B82F6;
+    color:white;
+    padding:6px 16px;
+    border-radius:20px;
+    font-weight:600;
+    font-size:14px;
+}
+
+/* ===== BUTTONS ===== */
+.bottom-buttons{
+    margin-top:40px;
+    text-align:center;
+}
+
+button{
+    padding:10px 28px;
+    margin:10px;
+    border-radius:8px;
+    border:none;
+    cursor:pointer;
+    font-size:14px;
+    transition:0.3s;
+}
+
+.back-btn{
+    background:#e5e7eb;
+}
+
+.back-btn:hover{
+    background:#d1d5db;
+}
+
+.logout-btn{
+    background:#dc2626;
+    color:white;
+}
+
+.logout-btn:hover{
+    background:#b91c1c;
+}
+
+/* Responsive */
+@media(max-width:900px){
+    .report-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="top-header">
+    <div class="logo-section">
+        <img src="images/logo.png">
+        <div class="logo-text">
+            Cyber Crime <span>Complaint Management System</span>
+        </div>
+    </div>
+</div>
+
+<div class="main-container">
+<div class="card">
+
+    <h2>Complaints Per Category</h2>
+
+    <div class="report-grid" id="reportGrid"></div>
+
+    <div class="bottom-buttons">
+        <button class="back-btn" onclick="goBack()">⬅ Back</button>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+</div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+    const user = JSON.parse(localStorage.getItem("user"));
+    if(!user || user.role !== 'admin'){
+        alert("Access denied. Admins only.");
+        window.location.href = "login.html";
+        return;
+    }
+
+    const iconMap = {
+        "Credit Card Fraud":"images/credit.png",
+        "Cyberbullying":"images/bullying.png",
+        "Data Breach":"images/breach.png",
+        "Fake Website Scam":"images/fake.png",
+        "Hacking":"images/hacking.png",
+        "Identity Theft":"images/theft.png",
+        "Online Fraud":"images/fraud.png",
+        "Phishing":"images/phishing.png",
+        "Social Media Abuse":"images/social.png",
+        "Ransomware":"images/ransomeware.png"
+    };
+
+    async function loadReport(){
+        try{
+            const response = await fetch('/complaints/report/category');
+            const data = await response.json();
+
+            const grid = document.getElementById("reportGrid");
+            grid.innerHTML = "";
+
+            if(data.length === 0){
+                grid.innerHTML = "<p style='text-align:center;width:100%;'>No report data available</p>";
+                return;
+            }
+
+            data.forEach(r => {
+
+                const icon = iconMap[r.category_name] || "images/credit.png";
+
+                grid.innerHTML += `
+                    <div class="report-item">
+                        <div class="category-info">
+                            <img src="${icon}">
+                            ${r.category_name}
+                        </div>
+                        <div class="count-badge">${r.total}</div>
+                    </div>
+                `;
+            });
+
+        } catch(err){
+            alert("Failed to load report");
+            console.error(err);
+        }
+    }
+
+    window.goBack = function(){
+        window.location.href = "admin.html";
+    }
+
+    window.logout = function(){
+        localStorage.removeItem("user");
+        window.location.href = "index.html";
+    }
+
+    loadReport();
+});
+</script>
+
+</body>
+</html>

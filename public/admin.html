@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard - Cyber Crime System</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #eef2f7;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== HEADER ===== */
+.header {
+    background-image: url("images/header-bg.png");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 22px 60px;   /* Balanced height */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-left img {
+    width: 60px;
+}
+
+.header h1 {
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.admin-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-profile img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+/* ===== MAIN CONTAINER ===== */
+.container {
+    flex: 1;
+    padding: 25px 60px 15px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* ===== STATS ===== */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.stat-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.stat-card img {
+    width: 65px;
+}
+
+.stat-card h3 {
+    font-size: 14px;
+    color: gray;
+}
+
+.stat-card p {
+    font-size: 17px;
+    font-weight: bold;
+    color: #1E3A8A;
+}
+
+/* ===== MAIN CARDS ===== */
+.main-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.card img {
+    width: 105px;   /* Reduced height */
+    margin-bottom: 8px;
+}
+
+.card h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #1E3A8A;
+}
+
+.card button {
+    padding: 7px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    background-color: #1E3A8A;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* ===== FOOTER BUTTONS ===== */
+.bottom-buttons {
+    text-align: center;
+    margin-top: 8px;  /* Reduced space */
+}
+
+.bottom-buttons button {
+    width: 100px;
+    padding: 7px 0;
+    margin: 5px;
+    border-radius: 6px;
+    font-size: 13px;
+    border: none;
+    cursor: pointer;
+}
+
+.back-btn {
+    background-color: #d1d5db;
+}
+
+.logout-btn {
+    background-color: #dc2626;
+    color: white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="header-left">
+        <img src="images/logo.png">
+        <h1>Cyber Crime Complaint Management System</h1>
+    </div>
+
+    <div class="admin-profile">
+        <span>Admin</span>
+        <img src="images/admin-avatar.png">
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="stats">
+        <div class="stat-card">
+            <img src="images/icon-clipboard.png">
+            <div>
+                <h3>Total Complaints</h3>
+                <p>120</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <img src="images/icon-folder.png">
+            <div>
+                <h3>Filed Cases</h3>
+                <p>80</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <img src="images/icon-shield.png">
+            <div>
+                <h3>Verified</h3>
+                <p>65</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <img src="images/icon-warning.png">
+            <div>
+                <h3>Pending</h3>
+                <p>40</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-cards">
+        <div class="card">
+            <img src="images/view-complaints.png">
+            <h2>View All Complaints</h2>
+            <button onclick="location.href='complaints.html'">
+                Open Complaints
+            </button>
+        </div>
+
+        <div class="card">
+            <img src="images/view-reports.png">
+            <h2>View Reports</h2>
+            <button onclick="location.href='report.html'">
+                View Reports
+            </button>
+        </div>
+    </div>
+
+    <div class="bottom-buttons">
+        <button class="back-btn" onclick="goBack()">Back</button>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+    const user = JSON.parse(localStorage.getItem("user"));
+    if(!user || user.role !== 'admin'){
+        alert("Access denied. Admin only.");
+        window.location.href = "login.html";
+    }
+});
+
+function goBack(){
+    window.location.href = "login.html";
+}
+
+function logout(){
+    localStorage.removeItem("user");
+    window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

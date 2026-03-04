@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>User Dashboard - Cyber Crime System</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI', Arial, sans-serif;
+    background:#eef2f7;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+/* ===== HEADER ===== */
+.header{
+    background-image:url("images/header-bg.png");
+    background-size:cover;
+    background-position:center;
+    padding:35px 60px;
+    color:white;
+}
+
+.header-left{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.header-left img{
+    width:70px;
+}
+
+.header h1{
+    font-size:30px;
+    font-weight:600;
+}
+
+/* ===== MAIN WRAPPER ===== */
+.wrapper{
+    padding:30px 60px 40px 60px;
+    flex:1;
+}
+
+/* ===== PANEL ===== */
+.panel{
+    background:white;
+    border-radius:20px;
+    padding:30px 45px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+/* ===== TITLE ===== */
+.panel h2{
+    text-align:center;
+    font-size:28px;
+    color:#1E3A8A;
+}
+
+.divider{
+    height:1px;
+    background:#ddd;
+}
+
+/* ===== STATS ===== */
+.stats{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+}
+
+.stat-card{
+    width:260px;
+    padding:20px;
+    border-radius:12px;
+    color:white;
+    display:flex;
+    align-items:center;
+    gap:15px;
+    box-shadow:0 6px 15px rgba(0,0,0,0.15);
+}
+
+.stat-blue{
+    background:linear-gradient(135deg,#1E3A8A,#3B82F6);
+}
+
+.stat-green{
+    background:linear-gradient(135deg,#15803d,#22c55e);
+}
+
+.stat-card img{
+    width:45px;
+}
+
+.stat-card h3{
+    font-size:15px;
+}
+
+.stat-card p{
+    font-size:24px;
+    font-weight:bold;
+}
+
+/* ===== ACTION CARDS ===== */
+.actions{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.action-card{
+    background:#f9fafb;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 6px 18px rgba(0,0,0,0.1);
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.action-card:hover{
+    transform:translateY(-5px);
+}
+
+.action-card img{
+    width:100%;
+    height:160px;
+    object-fit:cover;
+}
+
+.action-card h3{
+    padding:15px;
+    text-align:center;
+    font-size:18px;
+    color:#1E3A8A;
+}
+
+/* ===== TABLE SECTION ===== */
+#myComplaintsSection{
+    display:none;
+    margin-top:25px;
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+th{
+    background:#1E3A8A;
+    color:white;
+    padding:12px;
+}
+
+td{
+    padding:10px;
+    border-bottom:1px solid #eee;
+    text-align:center;
+}
+
+/* ===== FOOTER ===== */
+.bottom-buttons{
+    text-align:center;
+    margin-top:30px;
+}
+
+.bottom-buttons button{
+    width:120px;
+    padding:8px 0;
+    margin:8px;
+    border-radius:6px;
+    border:none;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.back-btn{
+    background:#d1d5db;
+}
+
+.logout-btn{
+    background:#dc2626;
+    color:white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="header-left">
+        <img src="images/logo.png">
+        <h1>Cyber Crime Complaint Management System</h1>
+    </div>
+</div>
+
+<div class="wrapper">
+<div class="panel">
+
+    <h2>User Dashboard</h2>
+    <div class="divider"></div>
+
+    <div class="stats">
+        <div class="stat-card stat-blue">
+            <img src="images/icon-folder.png">
+            <div>
+                <h3>Open Complaints</h3>
+                <p id="openCount">0</p>
+            </div>
+        </div>
+
+        <div class="stat-card stat-green">
+            <img src="images/icon-shield.png">
+            <div>
+                <h3>Closed Complaints</h3>
+                <p id="closedCount">0</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ===== 3 ACTION CARDS ===== -->
+    <div class="actions">
+        <div class="action-card" onclick="location.href='complaint.html'">
+            <img src="images/file-complaint.png">
+            <h3>File New Complaint</h3>
+        </div>
+
+        <div class="action-card" onclick="toggleComplaints()">
+            <img src="images/track-status.png">
+            <h3>Track Complaint Status</h3>
+        </div>
+
+        <!-- NEW BUTTON -->
+        <div class="action-card" onclick="location.href='crime-info.html'">
+            <img src="images/cyber.png">
+            <h3>Know About Cyber Crimes</h3>
+        </div>
+    </div>
+
+    <!-- TABLE -->
+    <div id="myComplaintsSection">
+        <h3 style="text-align:center;margin-top:10px;">My Complaints</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Category</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody id="myTableBody"></tbody>
+        </table>
+    </div>
+
+</div>
+
+<div class="bottom-buttons">
+    <button class="back-btn" onclick="goBack()">Back</button>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+</div>
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", async function(){
+
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if(!user){
+        alert("Please login first.");
+        window.location.href="login.html";
+        return;
+    }
+
+    await loadComplaints(user.user_id);
+});
+
+async function loadComplaints(userId){
+    try{
+        const res = await fetch(`/complaints/user/${userId}`);
+        const data = await res.json();
+
+        updateStats(data);
+        updateTable(data);
+
+    }catch(err){
+        console.error("Error loading complaints:", err);
+    }
+}
+
+function updateStats(data){
+    let openCount = 0;
+    let closedCount = 0;
+
+    data.forEach(c=>{
+        if(c.status === "Closed"){
+            closedCount++;
+        } else if(c.status !== "Withdrawn"){
+            openCount++;
+        }
+    });
+
+    document.getElementById("openCount").textContent = openCount;
+    document.getElementById("closedCount").textContent = closedCount;
+}
+
+function updateTable(data){
+    const tableBody = document.getElementById("myTableBody");
+    tableBody.innerHTML = "";
+
+    if(data.length === 0){
+        tableBody.innerHTML =
+            "<tr><td colspan='4'>No complaints found</td></tr>";
+        return;
+    }
+
+    data.forEach(c=>{
+        tableBody.innerHTML += `
+            <tr>
+                <td>${c.id}</td>
+                <td>${c.category}</td>
+                <td>${c.status}</td>
+                <td>${new Date(c.complaint_date).toLocaleString()}</td>
+            </tr>
+        `;
+    });
+}
+
+function toggleComplaints(){
+    const section = document.getElementById("myComplaintsSection");
+    section.style.display =
+        section.style.display === "block" ? "none" : "block";
+}
+
+function goBack(){
+    window.location.href="index.html";
+}
+
+function logout(){
+    localStorage.removeItem("user");
+    window.location.href="index.html";
+}
+</script>
+
+</body>
+</html>

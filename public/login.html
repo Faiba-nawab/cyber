@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - Cyber Crime Complaint System</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI', Arial, sans-serif;
+    background-image:url("images/bg.png");
+    background-size:cover;
+    background-position:center;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+/* ===== TOP BLUE HEADER ===== */
+.top-header{
+    background-image:url("images/header-bg.png");
+    background-size:cover;
+    background-position:center;
+    padding:20px 60px;
+    color:white;
+}
+
+.top-header-inner{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.top-header img{
+    width:65px;
+}
+
+.top-header h1{
+    font-size:24px;
+    font-weight:600;
+}
+
+/* ===== CENTER SECTION ===== */
+.main-container{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.main-container h2{
+    font-size:34px;
+    color:#1E3A8A;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    color:#555;
+    margin-bottom:35px;
+    font-size:16px;
+}
+
+/* ===== LOGIN CARD ===== */
+.login-card{
+    background:rgba(255,255,255,0.95);
+    padding:40px;
+    width:480px;
+    border-radius:18px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.2);
+    backdrop-filter: blur(4px);
+}
+
+/* ===== INPUT GROUP ===== */
+.input-group{
+    display:flex;
+    align-items:center;
+    background:#f3f4f6;
+    border-radius:8px;
+    margin-bottom:18px;
+    padding:10px 12px;
+}
+
+.input-group img{
+    width:22px;
+    margin-right:10px;
+    opacity:0.7;
+}
+
+.input-group input{
+    border:none;
+    outline:none;
+    background:transparent;
+    width:100%;
+    font-size:15px;
+}
+
+/* ===== FORGOT PASSWORD ===== */
+.forgot{
+    text-align:right;
+    font-size:14px;
+    margin-bottom:25px;
+    color:#2563EB;
+    cursor:pointer;
+}
+
+/* ===== BUTTONS ===== */
+.button-row{
+    display:flex;
+    gap:15px;
+}
+
+.login-btn{
+    flex:1;
+    background:linear-gradient(135deg,#1E3A8A,#3B82F6);
+    color:white;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.login-btn:hover{
+    opacity:0.9;
+}
+
+.back-btn{
+    flex:1;
+    background:#e5e7eb;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+/* ===== FOOTER ===== */
+.footer{
+    background:#1E3A8A;
+    color:white;
+    text-align:center;
+    padding:12px;
+    font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- TOP HEADER -->
+<div class="top-header">
+    <div class="top-header-inner">
+        <img src="images/logo.png">
+        <h1>Cyber Crime Complaint Management System</h1>
+    </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main-container">
+
+    <h2>Login to Your Account</h2>
+    <div class="subtitle">
+        Enter your credentials to access the Cyber Crime Complaint Management System.
+    </div>
+
+    <div class="login-card">
+
+        <div class="input-group">
+            <img src="images/mail.png">
+            <input type="email" id="email" placeholder="Enter your email..." required>
+        </div>
+
+        <div class="input-group">
+            <img src="images/lock.png">
+            <input type="password" id="password" placeholder="Enter your password..." required>
+        </div>
+
+        <div class="forgot">Forgot password?</div>
+
+        <div class="button-row">
+            <button class="login-btn" onclick="loginUser()">Login</button>
+            <button class="back-btn" onclick="goBack()">← Back</button>
+        </div>
+
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    © 2026 Cyber Crime Complaint Management System. All rights reserved.
+</div>
+
+<script>
+async function loginUser(){
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    if(!email || !password){
+        alert("Please enter email and password.");
+        return;
+    }
+
+    try{
+        const res = await fetch('/auth/login',{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({ email, password })
+        });
+
+        const data = await res.json();
+
+        if(res.status !== 200){
+            alert(data.message || "Login failed");
+            return;
+        }
+
+        localStorage.setItem("user", JSON.stringify(data.user));
+
+        if(data.user.role === 'admin'){
+            window.location.href = "admin.html";
+        } else {
+            window.location.href = "user.html";
+        }
+
+    } catch(err){
+        alert("Server error. Please try again.");
+    }
+}
+
+function goBack(){
+    window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

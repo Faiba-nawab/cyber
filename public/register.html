@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Register - Cyber Crime Complaint System</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html, body{
+    height:100%;
+    overflow:hidden;   /* removes scrolling */
+}
+
+body{
+    font-family:'Segoe UI', Arial, sans-serif;
+    background-image:url("images/bg.png");
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    flex-direction:column;
+}
+
+/* ===== TOP HEADER ===== */
+.top-header{
+    background-image:url("images/header-bg.png");
+    background-size:cover;
+    background-position:center;
+    padding:15px 60px;   /* reduced */
+    color:white;
+    flex-shrink:0;
+}
+
+.top-header-inner{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.top-header img{
+    width:55px;
+}
+
+.top-header h1{
+    font-size:20px;
+    font-weight:600;
+}
+
+/* ===== MAIN SECTION ===== */
+.main-container{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:10px 20px;
+}
+
+.main-container h2{
+    font-size:26px;   /* reduced */
+    color:#1E3A8A;
+    margin-bottom:6px;
+}
+
+.subtitle{
+    color:#555;
+    margin-bottom:15px;  /* reduced */
+    font-size:14px;
+}
+
+/* ===== REGISTER CARD ===== */
+.register-card{
+    background:rgba(255,255,255,0.95);
+    padding:22px 28px;   /* reduced */
+    width:460px;         /* slightly smaller */
+    border-radius:18px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.2);
+}
+
+/* ===== INPUT GROUP ===== */
+.input-group{
+    display:flex;
+    align-items:center;
+    background:#f3f4f6;
+    border-radius:8px;
+    margin-bottom:10px;   /* reduced */
+    padding:8px 10px;
+}
+
+.input-group img{
+    width:20px;
+    margin-right:10px;
+    opacity:0.8;
+}
+
+.input-group input{
+    border:none;
+    outline:none;
+    background:transparent;
+    width:100%;
+    font-size:14px;
+}
+
+/* ===== BUTTONS ===== */
+.button-row{
+    display:flex;
+    gap:12px;
+    margin-top:10px;
+}
+
+.register-btn{
+    flex:1;
+    background:linear-gradient(135deg,#1E3A8A,#3B82F6);
+    color:white;
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    font-size:14px;
+    cursor:pointer;
+}
+
+.back-btn{
+    flex:1;
+    background:#e5e7eb;
+    border:none;
+    border-radius:8px;
+    font-size:14px;
+    cursor:pointer;
+}
+
+/* ===== FOOTER ===== */
+.footer{
+    background:#1E3A8A;
+    color:white;
+    text-align:center;
+    padding:8px;
+    font-size:13px;
+    flex-shrink:0;
+}
+</style>
+</head>
+
+<body>
+
+<!-- TOP HEADER -->
+<div class="top-header">
+    <div class="top-header-inner">
+        <img src="images/logo.png">
+        <h1>Cyber Crime Complaint Management System</h1>
+    </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main-container">
+
+    <h2>Register Your Account</h2>
+    <div class="subtitle">
+        Please provide the following information to create your account.
+    </div>
+
+    <div class="register-card">
+
+        <div class="input-group">
+            <img src="images/contact.png">
+            <input type="text" id="full_name" placeholder="Enter your full name..." required>
+        </div>
+
+        <div class="input-group">
+            <img src="images/mail.png">
+            <input type="email" id="email" placeholder="Enter your email..." required>
+        </div>
+
+        <div class="input-group">
+            <img src="images/call.png">
+            <input type="text" id="phone" placeholder="Enter your phone number..." required>
+        </div>
+
+        <div class="input-group">
+            <img src="images/address.png">
+            <input type="text" id="address" placeholder="Enter your residential address..." required>
+        </div>
+
+        <div class="input-group">
+            <img src="images/lock.png">
+            <input type="password" id="password" placeholder="Create a password..." required>
+        </div>
+
+        <div class="input-group">
+            <img src="images/lock.png">
+            <input type="password" id="confirm_password" placeholder="Confirm your password..." required>
+        </div>
+
+        <div class="button-row">
+            <button class="register-btn" onclick="registerUser()">Register</button>
+            <button class="back-btn" onclick="goBack()">← Back</button>
+        </div>
+
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    © 2026 Cyber Crime Complaint Management System. All rights reserved.
+</div>
+
+<script>
+async function registerUser(){
+
+    const full_name = document.getElementById("full_name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const address = document.getElementById("address").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const confirm_password = document.getElementById("confirm_password").value.trim();
+
+    if(!full_name || !email || !phone || !address || !password || !confirm_password){
+        alert("Please fill all fields.");
+        return;
+    }
+
+    if(password !== confirm_password){
+        alert("Passwords do not match.");
+        return;
+    }
+
+    try{
+        const res = await fetch('/auth/register',{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({
+                full_name,
+                email,
+                phone,
+                address,
+                password
+            })
+        });
+
+        const result = await res.json();
+
+        if(res.status !== 200){
+            alert(result.message || "Registration failed");
+            return;
+        }
+
+        alert("Registration successful. Please login.");
+        window.location.href = "login.html";
+
+    } catch(err){
+        alert("Server error. Please try again.");
+    }
+}
+
+function goBack(){
+    window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

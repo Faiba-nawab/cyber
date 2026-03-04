@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cyber Crime Information - Cyber Crime Complaint Management System</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI', Arial, sans-serif;
+    background-image:url("images/index.png");
+    background-size:cover;
+    background-position:center;
+    height:100vh;
+    overflow:hidden;   /* Prevent scrolling */
+}
+
+/* ===== HEADER ===== */
+.top-header{
+    background-image:url("images/header-bg.png");
+    background-size:cover;
+    background-position:center;
+    padding:12px 50px;   /* reduced */
+    color:white;
+}
+
+.top-header img{
+    width:50px;   /* smaller */
+}
+
+.top-header h1{
+    font-size:20px;
+}
+
+/* ===== CONTAINER ===== */
+.container{
+    width:90%;
+    margin:20px auto 10px auto;   /* reduced */
+}
+
+/* ===== TITLE ===== */
+.page-title{
+    text-align:center;
+    font-size:26px;   /* smaller */
+    color:#1E3A8A;
+    margin-bottom:20px;
+}
+
+/* ===== GRID ===== */
+.crime-grid{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:15px 25px;   /* tighter */
+}
+
+/* ===== CARD ===== */
+.crime-card{
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(5px);
+    border-radius:14px;
+    padding:12px 18px;   /* reduced */
+    display:flex;
+    align-items:center;
+    gap:15px;
+    transition:0.2s;
+    box-shadow:0 6px 15px rgba(0,0,0,0.12);
+}
+
+.crime-card img{
+    width:50px;   /* smaller icon */
+}
+
+.crime-title{
+    font-size:16px;  /* smaller */
+    font-weight:600;
+    color:#1E3A8A;
+}
+
+.crime-description{
+    display:none;
+    margin-top:6px;
+    font-size:12px;
+    line-height:1.4;
+}
+
+/* ===== BACK BUTTON ===== */
+.bottom-section{
+    text-align:center;
+    margin-top:15px;  /* reduced */
+}
+
+.back-btn{
+    background:#1E3A8A;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    padding:6px 18px;
+    font-size:13px;
+}
+
+.back-btn:hover{
+    opacity:0.9;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+    .crime-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="top-header">
+    <div class="top-header-inner">
+        <img src="images/logo.png">
+        <h1>Cyber Crime Complaint Management System</h1>
+    </div>
+</div>
+
+<div class="container">
+
+<h2 class="page-title">Common Types of Cyber Crimes</h2>
+
+<div class="crime-grid">
+
+<!-- 1 -->
+<div class="crime-card" onclick="toggleDesc('creditCard')">
+    <img src="images/credit.png">
+    <div>
+        <div class="crime-title">Credit Card Fraud⬇️</div>
+        <div class="crime-description" id="creditCard">
+            Unauthorized use of someone’s credit or debit card information to make purchases or withdraw money.
+        </div>
+    </div>
+</div>
+
+<!-- 2 -->
+<div class="crime-card" onclick="toggleDesc('cyberbullying')">
+    <img src="images/bullying.png">
+    <div>
+        <div class="crime-title">Cyberbullying⬇️</div>
+        <div class="crime-description" id="cyberbullying">
+            Harassment or threats through social media, messaging platforms or online channels.
+        </div>
+    </div>
+</div>
+
+<!-- 3 -->
+<div class="crime-card" onclick="toggleDesc('dataBreach')">
+    <img src="images/breach.png">
+    <div>
+        <div class="crime-title">Data Breach⬇️</div>
+        <div class="crime-description" id="dataBreach">
+            Unauthorized access to confidential data such as passwords, banking details or personal information.
+        </div>
+    </div>
+</div>
+
+<!-- 4 -->
+<div class="crime-card" onclick="toggleDesc('fakeWebsite')">
+    <img src="images/fake.png">
+    <div>
+        <div class="crime-title">Fake Website Scam⬇️</div>
+        <div class="crime-description" id="fakeWebsite">
+            Fraudulent websites created to steal login credentials or trick users into fake payments.
+        </div>
+    </div>
+</div>
+
+<!-- 5 -->
+<div class="crime-card" onclick="toggleDesc('hacking')">
+    <img src="images/hacking.png">
+    <div>
+        <div class="crime-title">Hacking⬇️</div>
+        <div class="crime-description" id="hacking">
+            Illegal access to systems or networks to steal, alter or destroy information.
+        </div>
+    </div>
+</div>
+
+<!-- 6 -->
+<div class="crime-card" onclick="toggleDesc('identityTheft')">
+    <img src="images/theft.png">
+    <div>
+        <div class="crime-title">Identity Theft⬇️</div>
+        <div class="crime-description" id="identityTheft">
+            Stealing personal details like Aadhaar, PAN or bank information to commit fraud.
+        </div>
+    </div>
+</div>
+
+<!-- 7 -->
+<div class="crime-card" onclick="toggleDesc('onlineFraud')">
+    <img src="images/fraud.png">
+    <div>
+        <div class="crime-title">Online Fraud⬇️</div>
+        <div class="crime-description" id="onlineFraud">
+            Financial scams via fake job offers, lottery scams or fraudulent investments.
+        </div>
+    </div>
+</div>
+
+<!-- 8 -->
+<div class="crime-card" onclick="toggleDesc('phishing')">
+    <img src="images/phishing.png">
+    <div>
+        <div class="crime-title">Phishing⬇️</div>
+        <div class="crime-description" id="phishing">
+            Fraudulent emails or messages tricking users into revealing passwords or OTPs.
+        </div>
+    </div>
+</div>
+
+<!-- 9 -->
+<div class="crime-card" onclick="toggleDesc('ransomware')">
+    <img src="images/ransomeware.png">
+    <div>
+        <div class="crime-title">Ransomware⬇️</div>
+        <div class="crime-description" id="ransomware">
+            Malware that encrypts data and demands payment to restore access.
+        </div>
+    </div>
+</div>
+
+<!-- 10 -->
+<div class="crime-card" onclick="toggleDesc('socialMedia')">
+    <img src="images/social.png">
+    <div>
+        <div class="crime-title">Social Media Abuse⬇️</div>
+        <div class="crime-description" id="socialMedia">
+            Misuse of social networking platforms for harassment, fake profiles or defamation.
+        </div>
+    </div>
+</div>
+
+</div>
+
+<div class="bottom-section">
+    <button class="back-btn" onclick="goBack()">Back</button>
+</div>
+
+</div>
+
+<script>
+function toggleDesc(id){
+    const el = document.getElementById(id);
+    el.style.display = el.style.display === "block" ? "none" : "block";
+}
+
+function goBack(){
+    window.history.back();
+}
+</script>
+
+</body>
+</html>

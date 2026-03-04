@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cyber Crime Complaint Management System</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html, body{
+    height:100%;
+    overflow:hidden;   /* prevents scrolling */
+}
+
+body{
+    font-family:'Segoe UI', Arial, sans-serif;
+    background-image:url("images/index.png");
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    flex-direction:column;
+}
+
+/* ===== TOP HEADER ===== */
+.top-header{
+    background-image:url("images/header-bg.png");
+    background-size:cover;
+    background-position:center;
+    padding:15px 60px;   /* reduced */
+    color:white;
+    flex-shrink:0;
+}
+
+.top-header-inner{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.top-header img{
+    width:55px;   /* slightly smaller */
+}
+
+.top-header h1{
+    font-size:20px;
+    font-weight:600;
+}
+
+/* ===== MAIN SECTION ===== */
+.main-container{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:20px;   /* reduced */
+}
+
+.main-container h2{
+    font-size:24px;
+    color:#1E3A8A;
+    line-height:1.3;
+    margin-bottom:15px;
+    max-width:500px;
+}
+
+.description{
+    color:#555;
+    font-size:14px;
+    max-width:520px;
+    margin-bottom:30px;  /* reduced */
+    line-height:1.5;
+}
+
+/* ===== CARD SECTION ===== */
+.card-wrapper{
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+.option-card{
+    background:rgba(255,255,255,0.95);
+    width:300px;          /* slightly smaller */
+    padding:18px 20px;    /* reduced */
+    border-radius:18px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.2);
+    text-align:center;
+}
+
+.option-card img{
+    width:60px;
+    margin-bottom:10px;
+}
+
+.option-card h3{
+    font-size:20px;
+    color:#1E3A8A;
+    margin-bottom:8px;
+}
+
+.option-card p{
+    color:#555;
+    font-size:13px;
+    margin-bottom:18px;
+    line-height:1.4;
+}
+
+/* ===== BUTTONS ===== */
+.register-btn{
+    background:linear-gradient(135deg,#1E3A8A,#3B82F6);
+    color:white;
+    padding:10px 24px;
+    border:none;
+    border-radius:8px;
+    font-size:14px;
+    cursor:pointer;
+}
+
+.login-btn{
+    background:linear-gradient(135deg,#15803d,#22c55e);
+    color:white;
+    padding:10px 24px;
+    border:none;
+    border-radius:8px;
+    font-size:14px;
+    cursor:pointer;
+}
+
+/* ===== OR DIVIDER ===== */
+.or-divider{
+    background:#e5e7eb;
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    color:#555;
+}
+
+/* ===== FOOTER ===== */
+.footer{
+    background:#1E3A8A;
+    color:white;
+    text-align:center;
+    padding:8px;
+    font-size:13px;
+    flex-shrink:0;
+}
+</style>
+</head>
+
+<body>
+
+<!-- TOP HEADER -->
+<div class="top-header">
+    <div class="top-header-inner">
+        <img src="images/logo.png">
+        <h1>Cyber Crime Complaint Management System</h1>
+    </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main-container">
+
+    <h2>
+        Welcome to the<br>
+        Cyber Crime Complaint<br>
+        Management System
+    </h2>
+
+    <div class="description">
+        Report and track cyber crime complaints with ease. Secure, efficient,
+        and user-friendly platform for managing cyber crime reports.
+    </div>
+
+    <div class="card-wrapper">
+
+        <!-- Register Card -->
+        <div class="option-card">
+            <img src="images/register.png">
+            <h3>Register</h3>
+            <p>
+                Don't have an account?<br>
+                Create one to report cyber crimes and track your complaints.
+            </p>
+            <button class="register-btn" onclick="location.href='register.html'">
+                Register
+            </button>
+        </div>
+
+        <!-- OR Circle -->
+        <div class="or-divider">
+            Or
+        </div>
+
+        <!-- Login Card -->
+        <div class="option-card">
+            <img src="images/login.png">
+            <h3>Login</h3>
+            <p>
+                Already have an account?<br>
+                Log in to manage and track your cyber crime complaints.
+            </p>
+            <button class="login-btn" onclick="location.href='login.html'">
+                Login
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    © 2026 Cyber Crime Complaint Management System. All rights reserved.
+</div>
+
+</body>
+</html>
