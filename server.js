@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const db = require('./db'); // your DB connection
+const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -14,6 +15,6 @@ const complaintRoutes = require('./routes/complaints');
 app.use('/auth', authRoutes);           // /auth/login, /auth/register
 app.use('/complaints', complaintRoutes); // /complaints/... endpoints
 
-app.listen(5000, () => {
-  console.log('Server running on port 5000');
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
