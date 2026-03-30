@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 <head>
 <title>File Complaint - Cyber Crime Complaint Management System</title>
@@ -6,292 +7,266 @@
 <style>
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
 body{
-    font-family:'Segoe UI', Arial, sans-serif;
-    background-image:url("images/bg.png");
-    background-size:cover;
-    background-position:center;
-    min-height:100vh;
+font-family:'Segoe UI', Arial, sans-serif;
+background-image:url("images/bg.png");
+background-size:cover;
+background-position:center;
+min-height:100vh;
 }
 
-/* ===== HEADER ===== */
+/* HEADER */
+
 .top-header{
-    background-image:url("images/header-bg.png");
-    background-size:cover;
-    background-position:center;
-    padding:18px 60px;
-    color:white;
+background-image:url("images/header-bg.png");
+background-size:cover;
+background-position:center;
+padding:18px 60px;
+color:white;
 }
 
 .top-header-inner{
-    display:flex;
-    align-items:center;
-    gap:15px;
+display:flex;
+align-items:center;
+gap:15px;
 }
 
 .top-header img{
-    width:60px;
+width:60px;
 }
 
 .top-header h1{
-    font-size:24px;
-    font-weight:600;
+font-size:24px;
+font-weight:600;
 }
 
-/* ===== MAIN CONTAINER ===== */
+/* MAIN */
+
 .main-container{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:40px 20px 60px 20px;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:40px 20px 60px 20px;
 }
 
-/* ===== FORM CARD ===== */
+/* FORM CARD */
+
 .form-container{
-    width:750px;
-    background: rgba(255,255,255,0.85);
-    backdrop-filter: blur(6px);
-    padding:20px 30px;
-    border-radius:20px;
-    box-shadow:0 25px 60px rgba(0,0,0,0.2);
+width:750px;
+background:rgba(255,255,255,0.9);
+padding:20px 30px;
+border-radius:20px;
+box-shadow:0 25px 60px rgba(0,0,0,0.2);
 }
 
-/* ===== TITLE ===== */
 .form-container h3{
-    text-align:center;
-    font-size:30px;
-    color:#1E3A8A;
-    margin-bottom:35px;
+text-align:center;
+font-size:30px;
+color:#1E3A8A;
+margin-bottom:35px;
 }
 
-/* ===== LABEL ===== */
 label{
-    font-weight:600;
-    display:block;
-    margin-bottom:6px;
-    margin-top:18px;
-    font-size:16px;
+font-weight:600;
+display:block;
+margin-bottom:6px;
+margin-top:18px;
+font-size:16px;
 }
 
-/* ===== INPUTS ===== */
 select,
 input[type="file"]{
-    width:100%;
-    padding:12px 15px;
-    border-radius:8px;
-    border:1px solid #cbd5e1;
-    background: rgba(255,255,255,0.9);
-    font-size:15px;
+width:100%;
+padding:12px 15px;
+border-radius:8px;
+border:1px solid #cbd5e1;
+font-size:15px;
 }
 
-/* TEXTAREA different background */
 textarea{
-    width:100%;
-    height:120px;
-    resize:none;
-    padding:12px;
-    border-radius:8px;
-    border:1px solid #cbd5e1;
-    background:white;
-    font-size:15px;
+width:100%;
+height:120px;
+resize:none;
+padding:12px;
+border-radius:8px;
+border:1px solid #cbd5e1;
+font-size:15px;
 }
 
-/* IMAGE PREVIEW */
 #preview{
-    margin-top:10px;
-    max-width:200px;
-    display:none;
-    border-radius:8px;
+margin-top:10px;
+max-width:200px;
+display:none;
+border-radius:8px;
 }
 
-/* ===== BUTTON GROUP ===== */
+/* BUTTONS */
+
 .button-group{
-    display:flex;
-    justify-content:space-between;
-    margin-top:30px;
+display:flex;
+justify-content:space-between;
+margin-top:30px;
 }
 
-/* BACK BUTTON */
 .back-btn{
-    background:linear-gradient(135deg,#6b7280,#9ca3af);
-    color:white;
-    padding:10px 28px;
-    border:none;
-    border-radius:8px;
-    font-size:15px;
-    cursor:pointer;
+background:linear-gradient(135deg,#6b7280,#9ca3af);
+color:white;
+padding:10px 28px;
+border:none;
+border-radius:8px;
+cursor:pointer;
 }
 
-/* SUBMIT BUTTON */
 .submit-btn{
-    background:linear-gradient(135deg,#1E3A8A,#3B82F6);
-    color:white;
-    padding:10px 28px;
-    border:none;
-    border-radius:8px;
-    font-size:15px;
-    cursor:pointer;
+background:linear-gradient(135deg,#1E3A8A,#3B82F6);
+color:white;
+padding:10px 28px;
+border:none;
+border-radius:8px;
+cursor:pointer;
 }
 
 .submit-btn:hover,
 .back-btn:hover{
-    opacity:0.9;
+opacity:0.9;
 }
 
 </style>
+
 </head>
 
 <body>
 
-<!-- HEADER -->
 <div class="top-header">
-    <div class="top-header-inner">
-        <img src="images/logo.png">
-        <h1>Cyber Crime Complaint Management System</h1>
-    </div>
+<div class="top-header-inner">
+<img src="images/logo.png">
+<h1>Cyber Crime Complaint Management System</h1>
+</div>
 </div>
 
 <div class="main-container">
 
 <div class="form-container">
 
-    <h3>File a New Complaint</h3>
+<h3>File a New Complaint</h3>
 
-    <form id="complaintForm" enctype="multipart/form-data">
+<form id="complaintForm" enctype="multipart/form-data">
 
-        <label>Select Category</label>
-        <select id="category" required>
-            <option value="">-- Select Category --</option>
-        </select>
+<label>Select Category</label> <select id="category" required>
 
-        <label>Assign Officer</label>
-        <select id="officer">
-            <option value="">-- Select Officer --</option>
-        </select>
+<option value="">-- Select Category --</option>
+</select>
 
-        <label>Description</label>
-        <textarea id="description" required></textarea>
+<label>Description</label>
 
-        <label>Priority</label>
-        <select id="priority">
-            <option value="Low">Low</option>
-            <option value="Medium" selected>Medium</option>
-            <option value="High">High</option>
-        </select>
+<textarea id="description" required></textarea>
 
-        <label>Upload Evidence (Image / PDF)</label>
-        <input type="file" id="evidence" name="evidence" accept="image/*,.pdf">
-        <img id="preview">
+<label>Upload Evidence (Image / PDF)</label> <input type="file" id="evidence" name="evidence" accept="image/*,.pdf"> <img id="preview">
 
-        <div class="button-group">
-            <button type="button" class="back-btn" onclick="goBack()">Back</button>
-            <button type="submit" class="submit-btn">Submit Complaint</button>
-        </div>
+<div class="button-group">
+<button type="button" class="back-btn" onclick="goBack()">Back</button>
+<button type="submit" class="submit-btn">Submit Complaint</button>
+</div>
 
-    </form>
+</form>
 
 </div>
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", async function() {
 
-    const user = JSON.parse(localStorage.getItem("user"));
+document.addEventListener("DOMContentLoaded", async function(){
 
-    if (!user || user.role !== 'user') {
-        alert("Access denied.");
-        window.location.href = "login.html";
-        return;
-    }
+const user = JSON.parse(localStorage.getItem("user"));
 
-    const categorySelect = document.getElementById("category");
-    const officerSelect = document.getElementById("officer");
+if(!user || user.role !== 'user'){
+alert("Access denied.");
+window.location.href="login.html";
+return;
+}
 
-    try {
-        const catRes = await fetch('/complaints/api/categories');
-        const categories = await catRes.json();
+const categorySelect=document.getElementById("category");
 
-        categories.forEach(c => {
-            const opt = document.createElement("option");
-            opt.value = c.id;
-            opt.textContent = c.name;
-            categorySelect.appendChild(opt);
-        });
-    } catch {
-        alert("Error loading categories");
-    }
+try{
 
-    try {
-        const offRes = await fetch('/complaints/api/officers');
-        const officers = await offRes.json();
+const catRes=await fetch('/complaints/api/categories');
+const categories=await catRes.json();
 
-        officers.forEach(o => {
-            const opt = document.createElement("option");
-            opt.value = o.id;
-            opt.textContent = o.name;
-            officerSelect.appendChild(opt);
-        });
-    } catch {
-        alert("Error loading officers");
-    }
+categories.forEach(c=>{
 
-    const evidenceInput = document.getElementById("evidence");
-    const preview = document.getElementById("preview");
+const opt=document.createElement("option");
+opt.value=c.id;
+opt.textContent=c.name;
+categorySelect.appendChild(opt);
 
-    evidenceInput.addEventListener("change", function () {
-        const file = this.files[0];
+});
 
-        if (file && file.type.startsWith("image")) {
-            preview.src = URL.createObjectURL(file);
-            preview.style.display = "block";
-        } else {
-            preview.style.display = "none";
-        }
-    });
+}catch{
 
-    document.getElementById("complaintForm")
-    .addEventListener("submit", async function(e){
+alert("Error loading categories");
 
-        e.preventDefault();
+}
 
-        const formData = new FormData();
-        formData.append("user_id", user.user_id);
-        formData.append("category_id", categorySelect.value);
-        formData.append("officer_id", officerSelect.value);
-        formData.append("description", document.getElementById("description").value);
-        formData.append("priority", document.getElementById("priority").value);
+const evidenceInput=document.getElementById("evidence");
+const preview=document.getElementById("preview");
 
-        if (evidenceInput.files.length > 0) {
-            formData.append("evidence", evidenceInput.files[0]);
-        }
+evidenceInput.addEventListener("change",function(){
 
-        const response = await fetch('/complaints/add', {
-            method: 'POST',
-            body: formData
-        });
+const file=this.files[0];
 
-        const result = await response.json();
+if(file && file.type.startsWith("image")){
+preview.src=URL.createObjectURL(file);
+preview.style.display="block";
+}else{
+preview.style.display="none";
+}
 
-        if(!response.ok){
-            alert(result.error);
-            return;
-        }
+});
 
-        alert(result.message);
-        document.getElementById("complaintForm").reset();
-        preview.style.display = "none";
-    });
+document.getElementById("complaintForm").addEventListener("submit",async function(e){
+
+e.preventDefault();
+
+const formData=new FormData();
+
+formData.append("user_id",user.user_id);
+formData.append("category_id",categorySelect.value);
+formData.append("description",document.getElementById("description").value);
+
+if(evidenceInput.files.length>0){
+formData.append("evidence",evidenceInput.files[0]);
+}
+
+const response=await fetch('/complaints/add',{
+method:'POST',
+body:formData
+});
+
+const result=await response.json();
+
+if(!response.ok){
+alert(result.error);
+return;
+}
+
+alert(result.message);
+
+document.getElementById("complaintForm").reset();
+preview.style.display="none";
+
+});
 
 });
 
 function goBack(){
-    window.history.back();
+window.history.back();
 }
+
 </script>
 
 </body>

@@ -1,333 +1,450 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Admin Dashboard - Cyber Crime Complaint Management System</title>
+<title>Admin Dashboard - Cyber Crime Complaint Management System</title>
 
-    <style>
-        *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
 body{
-    font-family:'Segoe UI', Arial, sans-serif;
-    background-image:url("images/bg.png");
-    background-size:cover;
-    background-position:center;
-    min-height:100vh;
+font-family:'Segoe UI', Arial, sans-serif;
+background-image:url("images/bg.png");
+background-size:cover;
+background-position:center;
+min-height:100vh;
 }
 
-/* ===== TOP HEADER (MATCH OTHER PAGES) ===== */
+/* NAVBAR */
+
 .navbar{
-    background-image:url("images/header-bg.png");
-    background-size:cover;
-    background-position:center;
-    padding:18px 60px;
-    color:white;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+background-image:url("images/header-bg.png");
+background-size:cover;
+background-position:center;
+padding:18px 60px;
+color:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
 .navbar h2{
-    margin:0;
-    font-size:22px;
-    font-weight:600;
+font-size:22px;
 }
 
 .navbar button{
-    background:white;
-    color:#1E3A8A;
-    border:none;
-    padding:7px 16px;
-    border-radius:6px;
-    cursor:pointer;
-    font-weight:600;
-    margin-left:8px;
+background:white;
+color:#1E3A8A;
+border:none;
+padding:7px 16px;
+border-radius:6px;
+cursor:pointer;
+font-weight:600;
+margin-left:8px;
 }
 
-.navbar button:hover{
-    opacity:0.9;
-}
+/* CONTAINER */
 
-/* ===== MAIN CONTAINER ===== */
 .container{
-    width:95%;
-    margin:40px auto;
+width:95%;
+margin:40px auto;
 }
 
-/* ===== FILTER SECTION (GLASS STYLE) ===== */
+/* FILTERS */
+
 .filters{
-    display:flex;
-    gap:15px;
-    margin-bottom:25px;
-    flex-wrap:wrap;
-    background: rgba(255,255,255,0.85);
-    backdrop-filter: blur(6px);
-    padding:18px 25px;
-    border-radius:15px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+display:flex;
+gap:15px;
+margin-bottom:25px;
+flex-wrap:wrap;
+background: rgba(255,255,255,0.85);
+backdrop-filter: blur(6px);
+padding:18px 25px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
 }
 
 select{
-    padding:8px 12px;
-    border-radius:6px;
-    border:1px solid #cbd5e1;
-    font-size:14px;
+padding:8px 12px;
+border-radius:6px;
+border:1px solid #cbd5e1;
+font-size:14px;
 }
 
 .filter-btn{
-    background:linear-gradient(135deg,#1E3A8A,#3B82F6);
-    color:white;
-    border:none;
-    padding:8px 16px;
-    border-radius:6px;
-    cursor:pointer;
+background:linear-gradient(135deg,#1E3A8A,#3B82F6);
+color:white;
+border:none;
+padding:8px 16px;
+border-radius:6px;
+cursor:pointer;
 }
 
-.filter-btn:hover{
-    opacity:0.9;
-}
+/* TABLE */
 
-/* ===== TABLE WRAPPER (GLASS CARD) ===== */
 table{
-    width:100%;
-    border-collapse:collapse;
-    background: rgba(255,255,255,0.9);
-    backdrop-filter: blur(6px);
-    border-radius:18px;
-    overflow:hidden;
-    box-shadow:0 20px 45px rgba(0,0,0,0.2);
+width:100%;
+border-collapse:collapse;
+background: rgba(255,255,255,0.9);
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 20px 45px rgba(0,0,0,0.2);
 }
 
-/* HEADER */
 th{
-    background:#1E3A8A;
-    color:white;
-    padding:14px 10px;
-    font-size:14px;
+background:#1E3A8A;
+color:white;
+padding:14px 10px;
 }
 
-/* CELLS */
 td{
-    padding:10px;
-    border-bottom:1px solid #eee;
-    text-align:center;
-    font-size:14px;
+padding:10px;
+border-bottom:1px solid #eee;
+text-align:center;
 }
 
-/* HOVER ROW */
 tbody tr:hover{
-    background:#f3f4f6;
+background:#f3f4f6;
 }
 
-/* STATUS COLORS */
-.status-open { color: #b45309; font-weight: 600; }
-.status-investigation { color: #2563eb; font-weight: 600; }
-.status-closed { color: #15803d; font-weight: 600; }
-.status-withdrawn { color: #6b7280; font-weight: 600; }
+/* STATUS */
 
-.priority-low { color: green; font-weight: 600; }
-.priority-medium { color: orange; font-weight: 600; }
-.priority-high { color: red; font-weight: 600; }
+.status-open{color:#b45309;font-weight:600;}
+.status-investigation{color:#2563eb;font-weight:600;}
+.status-closed{color:#15803d;font-weight:600;}
 
-/* BUTTONS */
+/* PRIORITY */
+
+.priority-low{color:green;font-weight:600;}
+.priority-medium{color:orange;font-weight:600;}
+.priority-high{color:red;font-weight:600;}
+
 button{
-    padding:6px 12px;
-    border-radius:6px;
-    border:none;
-    cursor:pointer;
+padding:6px 12px;
+border-radius:6px;
+border:none;
+cursor:pointer;
 }
 
-.withdraw-btn{
-    background:#DC2626;
-    color:white;
-}
-
-.withdraw-btn:hover{
-    background:#b91c1c;
-}
-
-    </style>
+</style>
 </head>
+
 <body>
 
-<!-- NAVBAR -->
 <div class="navbar">
-    <h2>Admin Dashboard</h2>
-    <div>
-        <button onclick="goBack()">Back</button>
-        <button onclick="logout()">Logout</button>
-    </div>
+<h2>Admin Dashboard</h2>
+
+<div>
+<button onclick="goBack()">Back</button>
+<button onclick="logout()">Logout</button>
+</div>
 </div>
 
 <div class="container">
 
-    <!-- FILTERS -->
-    <div class="filters">
-        <select id="filterStatus">
-            <option value="">All Status</option>
-            <option value="Open">Open</option>
-            <option value="Under Investigation">Under Investigation</option>
-            <option value="Closed">Closed</option>
-            <option value="Withdrawn">Withdrawn</option>
-        </select>
+<div class="filters">
 
-        <select id="filterPriority">
-            <option value="">All Priority</option>
-            <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
-        </select>
+<select id="filterStatus">
+<option value="">All Status</option>
+<option value="Open">Open</option>
+<option value="Under Investigation">Under Investigation</option>
+</select>
 
-        <button class="filter-btn" onclick="applyFilters()">Apply Filter</button>
-    </div>
+<select id="filterPriority">
+<option value="">All Priority</option>
+<option value="Low">Low</option>
+<option value="Medium">Medium</option>
+<option value="High">High</option>
+</select>
 
-    <!-- TABLE -->
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>User</th>
-                <th>Category</th>
-                <th>Officer</th>
-                <th>Status</th>
-                <th>Priority</th>
-                <th>Date</th>
-                <th>Evidence</th>
-                <th>Update</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody id="tableBody"></tbody>
-    </table>
+<button class="filter-btn" onclick="applyFilters()">Apply Filter</button>
+
+<button class="filter-btn" onclick="openClosed()">Closed Complaints</button>
 
 </div>
 
+<table>
+
+<thead>
+
+<tr>
+<th>ID</th>
+<th>User</th>
+<th>Category</th>
+<th>Description</th>
+<th>Officer</th>
+<th>Status</th>
+<th>Priority</th>
+<th>Date</th>
+<th>Evidence</th>
+<th>Update</th>
+</tr>
+
+</thead>
+
+<tbody id="tableBody"></tbody>
+
+</table>
+
+</div>
+
+<!-- DESCRIPTION MODAL -->
+
+<div id="descModal"
+style="display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+justify-content:center;
+align-items:center;">
+
+<div
+style="background:white;
+padding:25px;
+border-radius:10px;
+width:400px;
+max-width:90%;
+text-align:center;">
+
+<h3 style="color:#1E3A8A;margin-bottom:10px;">
+Complaint Description
+</h3>
+
+<p id="descText" style="margin-bottom:20px;"></p>
+
+<button onclick="closeDesc()"
+style="background:#1E3A8A;color:white;padding:6px 14px;border-radius:5px;">
+Close
+</button>
+
+</div>
+</div>
+
 <script>
-document.addEventListener("DOMContentLoaded", function(){
 
-    const user = JSON.parse(localStorage.getItem("user"));
+const tableBody=document.getElementById("tableBody");
+let officersList=[];
 
-    if(!user || user.role !== 'admin'){
-        alert("Access denied.");
-        window.location.href = "login.html";
-        return;
-    }
+document.addEventListener("DOMContentLoaded",async function(){
 
-    const tableBody = document.getElementById("tableBody");
+const user=JSON.parse(localStorage.getItem("user"));
 
-    function getStatusClass(status){
-        if(status === 'Open') return "status-open";
-        if(status === 'Under Investigation') return "status-investigation";
-        if(status === 'Closed') return "status-closed";
-        if(status === 'Withdrawn') return "status-withdrawn";
-        return "";
-    }
+if(!user || user.role!=='admin'){
+alert("Access denied");
+window.location.href="login.html";
+return;
+}
 
-    function getPriorityClass(priority){
-        if(priority === 'Low') return "priority-low";
-        if(priority === 'Medium') return "priority-medium";
-        if(priority === 'High') return "priority-high";
-        return "";
-    }
+await loadOfficers();   // load officers first
+loadComplaints();       // then load complaints
 
-    async function loadComplaints(){
-
-        const status = document.getElementById("filterStatus").value;
-        const priority = document.getElementById("filterPriority").value;
-
-        let url = '/complaints?';
-        if(status) url += `status=${status}&`;
-        if(priority) url += `priority=${priority}`;
-
-        const res = await fetch(url);
-        const data = await res.json();
-
-        tableBody.innerHTML = "";
-
-        if(data.length === 0){
-            tableBody.innerHTML = `
-                <tr>
-                    <td colspan="10">No complaints found</td>
-                </tr>
-            `;
-            return;
-        }
-
-        data.forEach(c => {
-
-            let evidenceLink = c.file_path
-                ? `<a href="/uploads/${c.file_path}" target="_blank">View</a>`
-                : "—";
-
-            tableBody.innerHTML += `
-                <tr>
-                    <td>${c.complaint_id}</td>
-                    <td>${c.full_name}</td>
-                    <td>${c.category_name}</td>
-                    <td>${c.officer_name}</td>
-                    <td class="${getStatusClass(c.status)}">${c.status}</td>
-                    <td class="${getPriorityClass(c.priority)}">${c.priority}</td>
-                    <td>${new Date(c.complaint_date).toLocaleString()}</td>
-                    <td>${evidenceLink}</td>
-                    <td>
-                        <select onchange="updateStatus(${c.complaint_id}, this.value)">
-                            <option value="">Select</option>
-                            <option value="Under Investigation">Under Investigation</option>
-                            <option value="Closed">Closed</option>
-                        </select>
-                    </td>
-                    <td>
-                        ${c.status === 'Open'
-                            ? `<button class="withdraw-btn"
-                                       onclick="withdrawComplaint(${c.complaint_id})">
-                                   Withdraw
-                               </button>`
-                            : '—'
-                        }
-                    </td>
-                </tr>
-            `;
-        });
-    }
-
-    window.applyFilters = loadComplaints;
-
-    window.updateStatus = async function(id, status){
-        if(!status) return;
-
-        await fetch(`/complaints/update-status/${id}`, {
-            method: 'PUT',
-            headers: {'Content-Type':'application/json'},
-            body: JSON.stringify({status})
-        });
-
-        loadComplaints();
-    }
-
-    window.withdrawComplaint = async function(id){
-        if(!confirm("Withdraw this complaint?")) return;
-
-        await fetch(`/complaints/withdraw/${id}`, {
-            method: 'PUT'
-        });
-
-        loadComplaints();
-    }
-
-    window.goBack = function(){
-        window.location.href = "admin.html";
-    }
-
-    window.logout = function(){
-        localStorage.removeItem("user");
-        window.location.href = "index.html";
-    }
-
-    loadComplaints();
 });
+
+/* STATUS STYLE */
+
+function getStatusClass(status){
+if(status==='Open') return "status-open";
+if(status==='Under Investigation') return "status-investigation";
+if(status==='Closed') return "status-closed";
+return "";
+}
+
+/* LOAD COMPLAINTS */
+
+async function loadComplaints(){
+
+const status=document.getElementById("filterStatus").value;
+const priority=document.getElementById("filterPriority").value;
+
+let url="/complaints?";
+
+if(status) url+=`status=${status}&`;
+if(priority) url+=`priority=${priority}`;
+
+const res=await fetch(url);
+const data=await res.json();
+
+tableBody.innerHTML="";
+
+if(data.length===0){
+tableBody.innerHTML=`<tr><td colspan="10">No complaints found</td></tr>`;
+return;
+}
+
+data.forEach(c=>{
+
+let evidenceLink = "—";
+
+if(c.file_path && !c.file_path.startsWith("evidence_file_")){
+    evidenceLink = `<a href="/uploads/${c.file_path}" target="_blank">View</a>`;
+}
+
+tableBody.innerHTML+=`
+
+<tr>
+
+<td>${c.complaint_id}</td>
+
+<td>${c.full_name}</td>
+
+<td>${c.category_name}</td>
+
+<td>
+<a href="#" onclick="viewDescription(\`${c.description || "No description"}\`)">
+View
+</a>
+</td>
+
+<td>
+
+<select onchange="assignOfficer(${c.complaint_id},this.value)">
+
+<option value="">${c.officer_name || "Assign"}</option>
+
+${officersList.map(o=>`
+<option value="${o.id}">${o.name}</option>
+`).join("")}
+
+</select>
+
+</td>
+
+<td class="${getStatusClass(c.status)}">${c.status}</td>
+
+<td>
+
+<select onchange="updatePriority(${c.complaint_id},this.value)">
+
+<option value="">${c.priority || "Set"}</option>
+
+<option value="Low">Low</option>
+<option value="Medium">Medium</option>
+<option value="High">High</option>
+
+</select>
+
+</td>
+
+<td>${new Date(c.complaint_date).toLocaleString()}</td>
+
+<td>${evidenceLink}</td>
+
+<td>
+
+<select onchange="updateStatus(${c.complaint_id},this.value)">
+
+<option value="">Select</option>
+
+<option value="Under Investigation">Under Investigation</option>
+
+<option value="Closed">Closed</option>
+
+</select>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+async function loadOfficers(){
+
+const res=await fetch('/complaints/api/officers');
+officersList=await res.json();
+
+}
+
+/* FILTER */
+
+function applyFilters(){
+loadComplaints();
+}
+function openClosed(){
+window.location.href="closed-complaints.html";
+}
+/* UPDATE STATUS */
+
+async function updateStatus(id,status){
+
+if(!status) return;
+
+await fetch(`/complaints/update-status/${id}`,{
+method:'PUT',
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({status})
+});
+
+loadComplaints();
+
+}
+
+/* UPDATE PRIORITY */
+
+async function updatePriority(id,priority){
+
+if(!priority) return;
+
+await fetch(`/complaints/update-priority/${id}`,{
+method:'PUT',
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({priority})
+});
+
+loadComplaints();
+
+}
+
+async function assignOfficer(id,officer){
+
+if(!officer) return;
+
+await fetch(`/complaints/assign-officer/${id}`,{
+method:'PUT',
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({officer_id:officer})
+});
+
+loadComplaints();
+
+}
+
+/* DESCRIPTION MODAL */
+
+function viewDescription(text){
+
+document.getElementById("descText").innerText=text;
+document.getElementById("descModal").style.display="flex";
+
+}
+
+function closeDesc(){
+
+document.getElementById("descModal").style.display="none";
+
+}
+
+/* NAVIGATION */
+
+function goBack(){
+window.location.href="admin.html";
+}
+
+function logout(){
+localStorage.removeItem("user");
+window.location.href="index.html";
+}
+
 </script>
 
 </body>

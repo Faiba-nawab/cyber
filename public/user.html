@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 <head>
 <title>User Dashboard - Cyber Crime System</title>
@@ -18,7 +19,7 @@ body{
     flex-direction:column;
 }
 
-/* ===== HEADER ===== */
+/* HEADER */
 .header{
     background-image:url("images/header-bg.png");
     background-size:cover;
@@ -39,16 +40,15 @@ body{
 
 .header h1{
     font-size:30px;
-    font-weight:600;
 }
 
-/* ===== MAIN WRAPPER ===== */
+/* MAIN */
 .wrapper{
     padding:30px 60px 40px 60px;
     flex:1;
 }
 
-/* ===== PANEL ===== */
+/* PANEL */
 .panel{
     background:white;
     border-radius:20px;
@@ -59,7 +59,7 @@ body{
     gap:25px;
 }
 
-/* ===== TITLE ===== */
+/* TITLE */
 .panel h2{
     text-align:center;
     font-size:28px;
@@ -71,7 +71,7 @@ body{
     background:#ddd;
 }
 
-/* ===== STATS ===== */
+/* STATS */
 .stats{
     display:flex;
     justify-content:center;
@@ -86,7 +86,6 @@ body{
     display:flex;
     align-items:center;
     gap:15px;
-    box-shadow:0 6px 15px rgba(0,0,0,0.15);
 }
 
 .stat-blue{
@@ -101,16 +100,12 @@ body{
     width:45px;
 }
 
-.stat-card h3{
-    font-size:15px;
-}
-
 .stat-card p{
     font-size:24px;
     font-weight:bold;
 }
 
-/* ===== ACTION CARDS ===== */
+/* ACTION CARDS */
 .actions{
     display:grid;
     grid-template-columns:repeat(3,1fr);
@@ -143,7 +138,7 @@ body{
     color:#1E3A8A;
 }
 
-/* ===== TABLE SECTION ===== */
+/* TABLE */
 #myComplaintsSection{
     display:none;
     margin-top:25px;
@@ -168,24 +163,35 @@ td{
     text-align:center;
 }
 
-/* ===== FOOTER ===== */
+/* FOOTER */
 .bottom-buttons{
-    text-align:center;
-    margin-top:30px;
+display:flex;
+justify-content:center;
+margin-top:30px;
 }
 
 .bottom-buttons button{
-    width:120px;
-    padding:8px 0;
-    margin:8px;
-    border-radius:6px;
+    width:150px;
+    padding:10px 0;
+    margin-top:15px;
+    border-radius:8px;
     border:none;
     cursor:pointer;
-    font-size:14px;
+    font-size:15px;
 }
 
-.back-btn{
-    background:#d1d5db;
+.delete-btn{
+background:#dc2626;
+color:white;
+border:none;
+padding:6px 10px;
+border-radius:6px;
+cursor:pointer;
+font-size:14px;
+}
+
+.delete-btn:hover{
+background:#b91c1c;
 }
 
 .logout-btn{
@@ -193,166 +199,237 @@ td{
     color:white;
 }
 </style>
+
 </head>
 
 <body>
 
 <div class="header">
-    <div class="header-left">
-        <img src="images/logo.png">
-        <h1>Cyber Crime Complaint Management System</h1>
-    </div>
+<div class="header-left">
+<img src="images/logo.png">
+<h1>Cyber Crime Complaint Management System</h1>
+</div>
 </div>
 
 <div class="wrapper">
 <div class="panel">
 
-    <h2>User Dashboard</h2>
-    <div class="divider"></div>
+<h2>User Dashboard</h2>
+<div class="divider"></div>
 
-    <div class="stats">
-        <div class="stat-card stat-blue">
-            <img src="images/icon-folder.png">
-            <div>
-                <h3>Open Complaints</h3>
-                <p id="openCount">0</p>
-            </div>
-        </div>
+<div class="stats">
 
-        <div class="stat-card stat-green">
-            <img src="images/icon-shield.png">
-            <div>
-                <h3>Closed Complaints</h3>
-                <p id="closedCount">0</p>
-            </div>
-        </div>
-    </div>
+<div class="stat-card stat-blue">
+<img src="images/icon-folder.png">
+<div>
+<h3>Open Complaints</h3>
+<p id="openCount">0</p>
+</div>
+</div>
 
-    <div class="divider"></div>
+<div class="stat-card stat-green">
+<img src="images/icon-shield.png">
+<div>
+<h3>Closed Complaints</h3>
+<p id="closedCount">0</p>
+</div>
+</div>
 
-    <!-- ===== 3 ACTION CARDS ===== -->
-    <div class="actions">
-        <div class="action-card" onclick="location.href='complaint.html'">
-            <img src="images/file-complaint.png">
-            <h3>File New Complaint</h3>
-        </div>
+</div>
 
-        <div class="action-card" onclick="toggleComplaints()">
-            <img src="images/track-status.png">
-            <h3>Track Complaint Status</h3>
-        </div>
+<div class="divider"></div>
 
-        <!-- NEW BUTTON -->
-        <div class="action-card" onclick="location.href='crime-info.html'">
-            <img src="images/cyber.png">
-            <h3>Know About Cyber Crimes</h3>
-        </div>
-    </div>
+<div class="actions">
 
-    <!-- TABLE -->
-    <div id="myComplaintsSection">
-        <h3 style="text-align:center;margin-top:10px;">My Complaints</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Category</th>
-                    <th>Status</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody id="myTableBody"></tbody>
-        </table>
-    </div>
+<div class="action-card" onclick="location.href='complaint.html'">
+<img src="images/file-complaint.png">
+<h3>File New Complaint</h3>
+</div>
+
+<div class="action-card" onclick="toggleComplaints()">
+<img src="images/track-status.png">
+<h3>Track Complaint Status</h3>
+</div>
+
+<div class="action-card" onclick="location.href='crime-info.html'">
+<img src="images/cyber.png">
+<h3>Know About Cyber Crimes</h3>
+</div>
+
+</div>
+
+<div id="myComplaintsSection">
+
+<h3 style="text-align:center;margin-top:10px;">My Complaints</h3>
+
+<table>
+
+<thead>
+<tr>
+<th>ID</th>
+<th>Category</th>
+<th>Status</th>
+<th>Officer</th>
+<th>Officer Phone</th>
+<th>Date</th>
+<th>Delete</th>
+</tr>
+</thead>
+
+<tbody id="myTableBody"></tbody>
+
+</table>
+
+</div>
 
 </div>
 
 <div class="bottom-buttons">
-    <button class="back-btn" onclick="goBack()">Back</button>
-    <button class="logout-btn" onclick="logout()">Logout</button>
+<button class="logout-btn" onclick="logout()">⏻ Logout</button>
 </div>
 
 </div>
 
 <script>
+
 document.addEventListener("DOMContentLoaded", async function(){
 
-    const user = JSON.parse(localStorage.getItem("user"));
+const user = JSON.parse(localStorage.getItem("user"));
 
-    if(!user){
-        alert("Please login first.");
-        window.location.href="login.html";
-        return;
-    }
+if(!user){
+alert("Please login first.");
+window.location.href="login.html";
+return;
+}
 
-    await loadComplaints(user.user_id);
+await loadComplaints(user.user_id);
+
 });
 
 async function loadComplaints(userId){
-    try{
-        const res = await fetch(`/complaints/user/${userId}`);
-        const data = await res.json();
 
-        updateStats(data);
-        updateTable(data);
+try{
 
-    }catch(err){
-        console.error("Error loading complaints:", err);
-    }
+const res = await fetch(`/complaints/user/${userId}`);
+const data = await res.json();
+
+updateStats(data);
+updateTable(data);
+
+}catch(err){
+
+console.error("Error loading complaints:", err);
+
+}
+
 }
 
 function updateStats(data){
-    let openCount = 0;
-    let closedCount = 0;
 
-    data.forEach(c=>{
-        if(c.status === "Closed"){
-            closedCount++;
-        } else if(c.status !== "Withdrawn"){
-            openCount++;
-        }
-    });
+let openCount = 0;
+let closedCount = 0;
 
-    document.getElementById("openCount").textContent = openCount;
-    document.getElementById("closedCount").textContent = closedCount;
+data.forEach(c=>{
+
+if(c.status === "Closed"){
+closedCount++;
+}else{
+openCount++;
+}
+
+});
+
+document.getElementById("openCount").textContent = openCount;
+document.getElementById("closedCount").textContent = closedCount;
+
 }
 
 function updateTable(data){
-    const tableBody = document.getElementById("myTableBody");
-    tableBody.innerHTML = "";
 
-    if(data.length === 0){
-        tableBody.innerHTML =
-            "<tr><td colspan='4'>No complaints found</td></tr>";
-        return;
-    }
+const tableBody = document.getElementById("myTableBody");
 
-    data.forEach(c=>{
-        tableBody.innerHTML += `
-            <tr>
-                <td>${c.id}</td>
-                <td>${c.category}</td>
-                <td>${c.status}</td>
-                <td>${new Date(c.complaint_date).toLocaleString()}</td>
-            </tr>
-        `;
-    });
+tableBody.innerHTML = "";
+
+if(data.length === 0){
+
+tableBody.innerHTML =
+"<tr><td colspan='7'>No complaints found</td></tr>";
+
+return;
+
+}
+
+data.forEach(c=>{
+
+let deleteButton = "";
+
+if(c.status === "Open"){
+deleteButton = `<button class="delete-btn" onclick="deleteComplaint(${c.id},'${c.status}')">🗑</button>`;
+}else{
+deleteButton = `<button class="delete-btn" style="background:#9ca3af;cursor:not-allowed;" disabled>🗑</button>`;
+}
+
+tableBody.innerHTML += `
+<tr>
+<td>${c.id}</td>
+<td>${c.category}</td>
+<td>${c.status}</td>
+<td>${c.officer || "-"}</td>
+<td>${c.officer_phone || "-"}</td>
+<td>${new Date(c.complaint_date).toLocaleString()}</td>
+<td>${deleteButton}</td>
+</tr>
+`;
+
+});
+
 }
 
 function toggleComplaints(){
-    const section = document.getElementById("myComplaintsSection");
-    section.style.display =
-        section.style.display === "block" ? "none" : "block";
+
+const section = document.getElementById("myComplaintsSection");
+
+section.style.display =
+section.style.display === "block" ? "none" : "block";
+
 }
 
-function goBack(){
-    window.location.href="index.html";
+async function deleteComplaint(id,status){
+
+if(status !== "Open"){
+alert("Only open complaints can be deleted.");
+return;
+}
+
+if(!confirm("Are you sure you want to delete this complaint?")){
+return;
+}
+
+try{
+
+await fetch(`/complaints/delete/${id}`,{
+method:'DELETE'
+});
+
+const user = JSON.parse(localStorage.getItem("user"));
+loadComplaints(user.user_id);
+
+}catch(err){
+
+console.error("Delete error:",err);
+alert("Failed to delete complaint");
+
+}
+
 }
 
 function logout(){
-    localStorage.removeItem("user");
-    window.location.href="index.html";
+
+localStorage.removeItem("user");
+window.location.href="index.html";
+
 }
+
 </script>
 
 </body>

@@ -227,6 +227,20 @@ async function registerUser(){
         return;
     }
 
+    if(!email.endsWith("@gmail.com")){
+    alert("Email must end with @gmail.com");
+    return;
+   }
+
+    if(password.length < 6){
+        alert("Password must be at least 6 characters");
+        return;
+    }
+
+    if(!/^\d{10}$/.test(phone)){
+    alert("Phone number must be exactly 10 digits");
+    return;
+    }
     try{
         const res = await fetch('/auth/register',{
             method:'POST',
